@@ -16,18 +16,20 @@ import { RedisModule as _RedisModule } from '@liaoliaots/nestjs-redis';
         }
 
         const [host, portString] = mandatoryCredentials as [string, string];
-        const password = process.env['REDIS_PASSWORD'];
-
         if (portString.match(/\D/)) {
           throw new Error('Invalid Redis port');
         }
         const port = parseInt(portString);
+
+        const password = process.env['REDIS_PASSWORD'];
+        const keyPrefix = process.env['REDIS_KEY_PREFIX'];
 
         return {
           config: {
             host,
             port,
             ...(password ? { password } : {}),
+            ...(keyPrefix ? { keyPrefix } : {}),
           },
         };
       },

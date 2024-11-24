@@ -1,11 +1,14 @@
-# showcase--nx-nestjs--liaoliaots-nestjs-redis
+# showcase--nx-nestjs--liaoliaots-nestjs-redis--api-tests-with-in-memory-db
 
 ## Showcase
 
-1. Set up by copying `.env.template` as `.env`
-2. Start the infra using `./scripts/docker-infra-run.sh`
-3. Run the app using `pnpm exec nx run app-nest-1:serve`
-4. Enable "REST Client" extension in VSCode and run the requests in `./api/requests.http` file
+1. Install dependencies using `pnpm install`
+2. Run the tests using `pnpm exec nx test app-nest-1`
+3. Troubleshoot tests using the following command
+
+```bash
+npx nx reset && DEBUG=jest-redis:* pnpm exec nx test app-nest-1 --verbose -- --detectOpenHandles
+```
 
 ## Local development
 
